@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="net.ddns.rkdawenterprises.briefforeclipse.feature">
+      <category name="brief_emulator_for_eclipse"/>
+   </feature>
+   <category-def name="brief_emulator_for_eclipse" label="BRIEF Text Editor Emulation for Eclipse"/>
+</site>
