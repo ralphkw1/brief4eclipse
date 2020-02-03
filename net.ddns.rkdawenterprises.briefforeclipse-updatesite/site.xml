@@ -3,7 +3,7 @@
    <description name="Brief Text Editor Emulator for Eclipse Update Site" url="https://raw.githubusercontent.com/ralphkw1/briefforeclipse/master/net.ddns.rkdawenterprises.briefforeclipse-updatesite">
       https://rkdawenterprises.ddns.net/briefforeclipse/about.html
    </description>
-   <feature url="features/net.ddns.rkdawenterprises.briefforeclipse.feature_1.0.0.202002031127.jar" id="net.ddns.rkdawenterprises.briefforeclipse.feature" version="1.0.0.202002031127">
+   <feature url="features/net.ddns.rkdawenterprises.briefforeclipse.feature_1.0.0.202002031554.jar" id="net.ddns.rkdawenterprises.briefforeclipse.feature" version="1.0.0.202002031554">
       <category name="net.ddns.rkdawenterprises.briefforeclipse.category"/>
    </feature>
    <category-def name="net.ddns.rkdawenterprises.briefforeclipse.category" label="Brief Text Editor Emulator for Eclipse">
