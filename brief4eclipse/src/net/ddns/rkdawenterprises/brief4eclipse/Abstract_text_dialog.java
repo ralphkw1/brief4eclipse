@@ -1,12 +1,19 @@
 
 /***************************************************************************//**
- * Copyright (c) 2020 Ralph and Donna Williamson and RKDAW Enterprises
- * <rkdawenterprises.ddns.net>. All rights reserved.
+ * Copyright (c) 2021 RKDAW Enterprises and Ralph Williamson,
+ * <rkdawenterprises.ddns.net, rkdawenterprises@gmail.com>. All rights reserved.
  * This program, and the accompanying materials, are provided under the terms
- * of the Eclipse Public License v2.0.
+ * of the Eclipse Public License v2.0 (the "License"). You may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at "https://www.eclipse.org/legal/epl-2.0".
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions, warranties,
+ * and limitations under the License.
  ******************************************************************************/
 
-package net.ddns.rkdawenterprises.briefforeclipse;
+package net.ddns.rkdawenterprises.brief4eclipse;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;

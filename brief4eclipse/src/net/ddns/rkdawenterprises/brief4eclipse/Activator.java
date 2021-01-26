@@ -1,12 +1,19 @@
 
 /***************************************************************************//**
- * Copyright (c) 2020 Ralph and Donna Williamson and RKDAW Enterprises
- * <rkdawenterprises.ddns.net>. All rights reserved.
+ * Copyright (c) 2021 RKDAW Enterprises and Ralph Williamson,
+ * <rkdawenterprises.ddns.net, rkdawenterprises@gmail.com>. All rights reserved.
  * This program, and the accompanying materials, are provided under the terms
- * of the Eclipse Public License v2.0.
+ * of the Eclipse Public License v2.0 (the "License"). You may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at "https://www.eclipse.org/legal/epl-2.0".
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions, warranties,
+ * and limitations under the License.
  ******************************************************************************/
 
-package net.ddns.rkdawenterprises.briefforeclipse;
+package net.ddns.rkdawenterprises.brief4eclipse;
 
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -16,7 +23,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.bindings.keys.KeyLookupFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.text.TextUtilities;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
@@ -32,17 +38,17 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle.
  */
-public class Brief_for_eclipse extends AbstractUIPlugin
+public class Activator extends AbstractUIPlugin
 {
     /**
      * The plug-in ID.
      */
-    public static final String PLUGIN_ID = "net.ddns.rkdawenterprises.briefforeclipse"; //$NON-NLS-1$
+    public static final String PLUGIN_ID = "net.ddns.rkdawenterprises.brief4eclipse"; //$NON-NLS-1$
 
     /**
      * The shared instance.
      */
-    private static Brief_for_eclipse m_plugin = null;
+    private static Activator m_plugin = null;
 
     /**
      *  Handles the operations for the different editors.
@@ -61,12 +67,12 @@ public class Brief_for_eclipse extends AbstractUIPlugin
         m_plugin = this;
 
         m_status_line_manager =
-                get_active_editor( getWorkbench().getActiveWorkbenchWindow() ).
+                get_active_editor( PlatformUI.getWorkbench().getActiveWorkbenchWindow() ).
                 getEditorSite().getActionBars().getStatusLineManager();
 
         try
         {
-            m_text_editor_proxy = new Text_editor_proxy( getWorkbench().getActiveWorkbenchWindow(),
+            m_text_editor_proxy = new Text_editor_proxy( PlatformUI.getWorkbench().getActiveWorkbenchWindow(),
                                                          null );
         }
         catch( Exception exception ) {}
@@ -86,7 +92,7 @@ public class Brief_for_eclipse extends AbstractUIPlugin
      *
      * @return The shared instance.
      */
-    public static Brief_for_eclipse getDefault()
+    public static Activator getDefault()
     {
         return m_plugin;
     }
@@ -96,7 +102,7 @@ public class Brief_for_eclipse extends AbstractUIPlugin
      */
     public static Shell get_shell()
     {
-        return( getDefault().getWorkbench().getActiveWorkbenchWindow().getShell() );
+        return( PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell() );
     }
 
     /**
@@ -182,28 +188,7 @@ public class Brief_for_eclipse extends AbstractUIPlugin
      */
     public static void beep()
     {
-        getDefault().getWorkbench().getDisplay().beep();
-    }
-
-    /**
-     * Extract the first line of the given string using the standard delimiters.
-     * If the given string is only one line, then just returns the string.
-     *
-     * @param string    The given string.
-     *
-     * @return  The first line of the string.
-     */
-    public static String get_first_line( String string )
-    {
-        if( string.length() <= 0 ) return string;
-
-        int[] match = TextUtilities.indexOf( TextUtilities.DELIMITERS, string, 0 );
-
-        if ( match[0] == -1 ) return string;
-
-        if( match[0] > 0 ) return string.substring( 0, match[0] );
-
-        return string;
+        PlatformUI.getWorkbench().getDisplay().beep();
     }
 
     public static void print_key_event( String key,
@@ -212,7 +197,7 @@ public class Brief_for_eclipse extends AbstractUIPlugin
                                         int key_code,
                                         char character )
     {
-        Brief_for_eclipse.system_message( ">>>>: " + key + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+        Activator.system_message( ">>>>: " + key + ", " + //$NON-NLS-1$ //$NON-NLS-2$
                 ( is_printable ? "printable" : "non-printable" ) + ", " + //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 "state_mask=" + Integer.toHexString( state_mask )  + ", " + //$NON-NLS-1$ //$NON-NLS-2$
                 "key_code=" + Integer.toHexString( key_code ) + ", " + //$NON-NLS-1$ //$NON-NLS-2$
@@ -237,7 +222,7 @@ public class Brief_for_eclipse extends AbstractUIPlugin
         }
         catch( Exception e )
         {
-            Brief_for_eclipse.log_error( "brief_for_eclipse.execute_command_id(): Command <" + command_id + "> not found.", e ); //$NON-NLS-1$ //$NON-NLS-2$
+            Activator.log_error( "brief_for_eclipse.execute_command_id(): Command <" + command_id + "> not found.", e ); //$NON-NLS-1$ //$NON-NLS-2$
             return true;
         }
     }
@@ -264,7 +249,8 @@ public class Brief_for_eclipse extends AbstractUIPlugin
         {
             try
             {
-                m_text_editor_proxy = new Text_editor_proxy( getWorkbench().getActiveWorkbenchWindow(),
+                m_text_editor_proxy =
+                        new Text_editor_proxy( PlatformUI.getWorkbench().getActiveWorkbenchWindow(),
                                                              get_active_editor( workbench_window ) );
             }
             catch( Exception exception ) {}
@@ -278,246 +264,246 @@ public class Brief_for_eclipse extends AbstractUIPlugin
         }
         catch( Exception exception )
         {
-            Brief_for_eclipse.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + exception ); //$NON-NLS-1$ //$NON-NLS-2$
+            Activator.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + exception ); //$NON-NLS-1$ //$NON-NLS-2$
             return;
         }
 
         m_status_line_manager =
-                get_active_editor( getWorkbench().getActiveWorkbenchWindow() ).
+                get_active_editor( PlatformUI.getWorkbench().getActiveWorkbenchWindow() ).
                 getEditorSite().getActionBars().getStatusLineManager();
 
         // Process the command.
         switch( cmd.getId() )
         {
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.line_marking_mode_toggle": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.line_marking_mode_toggle": //$NON-NLS-1$
             {
                 m_text_editor_proxy.line_marking_mode_toggle();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.numpad_copy": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.numpad_copy": //$NON-NLS-1$
             {
                 m_text_editor_proxy.numpad_copy();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.numpad_cut": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.numpad_cut": //$NON-NLS-1$
             {
                 m_text_editor_proxy.numpad_cut();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.insert_paste": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.insert_paste": //$NON-NLS-1$
             {
                 m_text_editor_proxy.insert_paste();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.insert_swap": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.insert_swap": //$NON-NLS-1$
             {
                 m_text_editor_proxy.insert_swap();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.column_marking_mode_toggle": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.column_marking_mode_toggle": //$NON-NLS-1$
             {
                 m_text_editor_proxy.column_marking_mode_toggle();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.marking_mode_toggle": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.marking_mode_toggle": //$NON-NLS-1$
             {
                 m_text_editor_proxy.marking_mode_toggle();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.repeat": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.repeat": //$NON-NLS-1$
             {
                 m_text_editor_proxy.repeat_command_or_string();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.scroll_buffer_up": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.scroll_buffer_up": //$NON-NLS-1$
             {
                 m_text_editor_proxy.scroll_buffer( 1 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.scroll_buffer_down": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.scroll_buffer_down": //$NON-NLS-1$
             {
                 m_text_editor_proxy.scroll_buffer( -1 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.line_to_top_of_window": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.line_to_top_of_window": //$NON-NLS-1$
             {
                 m_text_editor_proxy.line_to_top_of_window();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.center_line_in_window": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.center_line_in_window": //$NON-NLS-1$
             {
                 m_text_editor_proxy.center_line_in_window();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.line_to_bottom_of_window": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.line_to_bottom_of_window": //$NON-NLS-1$
             {
                 m_text_editor_proxy.line_to_bottom_of_window();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.top_of_buffer": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.top_of_buffer": //$NON-NLS-1$
             {
                 m_text_editor_proxy.top_of_buffer();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.bottom_of_buffer": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.bottom_of_buffer": //$NON-NLS-1$
             {
                 m_text_editor_proxy.bottom_of_buffer();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.top_of_window": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.top_of_window": //$NON-NLS-1$
             {
                 m_text_editor_proxy.top_of_window();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.end_of_window": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.end_of_window": //$NON-NLS-1$
             {
                 m_text_editor_proxy.end_of_window();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.left_side_of_window": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.left_side_of_window": //$NON-NLS-1$
             {
                 m_text_editor_proxy.left_side_of_window();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.right_side_of_window": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.right_side_of_window": //$NON-NLS-1$
             {
                 m_text_editor_proxy.right_side_of_window();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.home": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.home": //$NON-NLS-1$
             {
                 m_text_editor_proxy.home();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.end": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.end": //$NON-NLS-1$
             {
                 m_text_editor_proxy.end();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.virtual_caret_mode_toggle": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.virtual_caret_mode_toggle": //$NON-NLS-1$
             {
                 m_text_editor_proxy.virtual_caret_mode_toggle();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.go_to_line": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.go_to_line": //$NON-NLS-1$
             {
                 m_text_editor_proxy.go_to_line();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.drop_bookmark1": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.drop_bookmark1": //$NON-NLS-1$
             {
                 m_text_editor_proxy.drop_bookmark( 1 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.drop_bookmark2": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.drop_bookmark2": //$NON-NLS-1$
             {
                 m_text_editor_proxy.drop_bookmark( 2 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.drop_bookmark3": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.drop_bookmark3": //$NON-NLS-1$
             {
                 m_text_editor_proxy.drop_bookmark( 3 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.drop_bookmark4": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.drop_bookmark4": //$NON-NLS-1$
             {
                 m_text_editor_proxy.drop_bookmark( 4 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.drop_bookmark5": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.drop_bookmark5": //$NON-NLS-1$
             {
                 m_text_editor_proxy.drop_bookmark( 5 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.drop_bookmark6": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.drop_bookmark6": //$NON-NLS-1$
             {
                 m_text_editor_proxy.drop_bookmark( 6 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.drop_bookmark7": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.drop_bookmark7": //$NON-NLS-1$
             {
                 m_text_editor_proxy.drop_bookmark( 7 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.drop_bookmark8": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.drop_bookmark8": //$NON-NLS-1$
             {
                 m_text_editor_proxy.drop_bookmark( 8 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.drop_bookmark9": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.drop_bookmark9": //$NON-NLS-1$
             {
                 m_text_editor_proxy.drop_bookmark( 9 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.drop_bookmark10": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.drop_bookmark10": //$NON-NLS-1$
             {
                 m_text_editor_proxy.drop_bookmark( 10 );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.jump_bookmark": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.jump_bookmark": //$NON-NLS-1$
             {
                 m_text_editor_proxy.jump_bookmark();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.open_bookmarks_dialog": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.open_bookmarks_dialog": //$NON-NLS-1$
             {
                 m_text_editor_proxy.open_bookmarks_dialog();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.replace_next": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.replace_next": //$NON-NLS-1$
             {
                 m_text_editor_proxy.replace_next_previous( true );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.replace_previous": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.replace_previous": //$NON-NLS-1$
             {
                 m_text_editor_proxy.replace_next_previous( false );
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.open_scrap_dialog": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.open_scrap_dialog": //$NON-NLS-1$
             {
                 m_text_editor_proxy.open_scrap_dialog();
                 return;
             }
 
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.rename": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.rename": //$NON-NLS-1$
             {
                 m_text_editor_proxy.change_output_file_name();
                 return;
@@ -550,7 +536,7 @@ public class Brief_for_eclipse extends AbstractUIPlugin
         Command cmd = event.getCommand();
         switch( cmd.getId() )
         {
-            case "net.ddns.rkdawenterprises.briefforeclipse.commands.write_all_and_exit": //$NON-NLS-1$
+            case "net.ddns.rkdawenterprises.brief4eclipse.commands.write_all_and_exit": //$NON-NLS-1$
             {
                 write_all_and_exit();
                 return null;

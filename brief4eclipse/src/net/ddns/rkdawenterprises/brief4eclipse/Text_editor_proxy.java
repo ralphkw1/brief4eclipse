@@ -1,12 +1,19 @@
 
 /***************************************************************************//**
- * Copyright (c) 2020 Ralph and Donna Williamson and RKDAW Enterprises
- * <rkdawenterprises.ddns.net>. All rights reserved.
+ * Copyright (c) 2021 RKDAW Enterprises and Ralph Williamson,
+ * <rkdawenterprises.ddns.net, rkdawenterprises@gmail.com>. All rights reserved.
  * This program, and the accompanying materials, are provided under the terms
- * of the Eclipse Public License v2.0.
+ * of the Eclipse Public License v2.0 (the "License"). You may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at "https://www.eclipse.org/legal/epl-2.0".
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions, warranties,
+ * and limitations under the License.
  ******************************************************************************/
 
- package net.ddns.rkdawenterprises.briefforeclipse;
+ package net.ddns.rkdawenterprises.brief4eclipse;
 
 import java.awt.AWTException;
 import java.lang.reflect.InvocationTargetException;
@@ -61,14 +68,15 @@ import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.ui.texteditor.ITextEditorExtension2;
 import org.eclipse.ui.texteditor.ITextEditorExtension5;
 
-import net.ddns.rkdawenterprises.briefforeclipse.Scrap_support.Scrap_item;
-import net.ddns.rkdawenterprises.briefforeclipse.Scrap_support.i_editor_copy;
-import net.ddns.rkdawenterprises.briefforeclipse.Scrap_support.i_editor_cut;
-import net.ddns.rkdawenterprises.briefforeclipse.Scrap_support.i_editor_paste;
+import net.ddns.rkdawenterprises.brief4eclipse.Scrap_support.Scrap_item;
+import net.ddns.rkdawenterprises.brief4eclipse.Scrap_support.i_editor_copy;
+import net.ddns.rkdawenterprises.brief4eclipse.Scrap_support.i_editor_cut;
+import net.ddns.rkdawenterprises.brief4eclipse.Scrap_support.i_editor_paste;
 
 /**
  * Performs command operations on the active text editor.
  */
+@SuppressWarnings( "restriction" )
 public class Text_editor_proxy
 {
     /**
@@ -183,9 +191,9 @@ public class Text_editor_proxy
             if( m_styled_text != null ) return;
         }
 
-        Brief_for_eclipse.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
+        Activator.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
                 "Unsupported editor (" + active_editor.toString() + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
-        Brief_for_eclipse.set_status_line( Messages.text_editor_proxy_48 );
+        Activator.set_status_line( Messages.text_editor_proxy_48 );
         throw new IllegalArgumentException( "Unsupported editor" ); //$NON-NLS-1$
     }
 
@@ -247,9 +255,9 @@ public class Text_editor_proxy
             return;
         }
 
-        Brief_for_eclipse.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
+        Activator.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
                 "Unsupported editor (" + active_editor.toString() + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
-        Brief_for_eclipse.set_status_line( Messages.text_editor_proxy_49 );
+        Activator.set_status_line( Messages.text_editor_proxy_49 );
         throw new IllegalArgumentException( "Unsupported editor" ); //$NON-NLS-1$
     }
 
@@ -376,7 +384,7 @@ public class Text_editor_proxy
 
         m_in_marking_mode = false;
 
-        Brief_for_eclipse.set_status_line( null );
+        Activator.set_status_line( null );
     }
 
     /**
@@ -396,7 +404,7 @@ public class Text_editor_proxy
         m_got_alt = false;
         m_got_marking_mode_key = false;
 
-        Brief_for_eclipse.set_status_line( Messages.text_editor_proxy_12 );
+        Activator.set_status_line( Messages.text_editor_proxy_12 );
     }
 
     /**
@@ -420,7 +428,7 @@ public class Text_editor_proxy
         m_got_alt = false;
         m_got_marking_mode_key = false;
 
-        Brief_for_eclipse.set_status_line( null );
+        Activator.set_status_line( null );
     }
 
     /**
@@ -445,7 +453,7 @@ public class Text_editor_proxy
         m_got_alt = false;
         m_got_marking_mode_key = false;
 
-        Brief_for_eclipse.set_status_line( Messages.text_editor_proxy_13 );
+        Activator.set_status_line( Messages.text_editor_proxy_13 );
     }
 
     /**
@@ -485,7 +493,7 @@ public class Text_editor_proxy
         m_got_alt = false;
         m_got_marking_mode_key = false;
 
-        Brief_for_eclipse.set_status_line( null );
+        Activator.set_status_line( null );
     }
 
     /**
@@ -506,7 +514,7 @@ public class Text_editor_proxy
         m_got_alt = false;
         m_got_marking_mode_key = false;
 
-        Brief_for_eclipse.set_status_line( Messages.text_editor_proxy_14 );
+        Activator.set_status_line( Messages.text_editor_proxy_14 );
     }
 
     /**
@@ -539,7 +547,7 @@ public class Text_editor_proxy
         m_got_alt = false;
         m_got_marking_mode_key = false;
 
-        Brief_for_eclipse.set_status_line( null );
+        Activator.set_status_line( null );
     }
 
     /**
@@ -573,7 +581,7 @@ public class Text_editor_proxy
         m_got_alt = false;
         m_got_marking_mode_key = false;
 
-        Brief_for_eclipse.set_status_line( Messages.text_editor_proxy_15 );
+        Activator.set_status_line( Messages.text_editor_proxy_15 );
     }
 
     /**
@@ -807,7 +815,7 @@ public class Text_editor_proxy
                      * Which is pretty much any printable character, plus BS, and DEL, and ENTER.
                      * TODO: modified keys.
                      */
-                    if( Brief_for_eclipse.is_printable( key_code, state_mask ) ||
+                    if( Activator.is_printable( key_code, state_mask ) ||
                             ( ( key_code == SWT.BS ) || ( key_code == SWT.DEL ) || ( key_code == SWT.CR ) ) )
                     {
                         stop_all_marking_modes( false, true );
@@ -931,7 +939,7 @@ public class Text_editor_proxy
                      * Which is pretty much any printable character, plus BS, and DEL, and ENTER.
                      * TODO: modified keys.
                      */
-                    if( Brief_for_eclipse.is_printable( key_code, state_mask ) ||
+                    if( Activator.is_printable( key_code, state_mask ) ||
                             ( ( key_code == SWT.BS ) || ( key_code == SWT.DEL ) || ( key_code == SWT.CR ) ) )
                     {
                         stop_all_marking_modes( false, false );
@@ -1086,7 +1094,7 @@ public class Text_editor_proxy
             }
             catch( IllegalArgumentException | ParseException exception )
             {
-                Brief_for_eclipse.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
+                Activator.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
                         "Command <" + command + "> not found.", exception ); //$NON-NLS-1$ //$NON-NLS-2$
                 return true;
             }
@@ -1114,7 +1122,7 @@ public class Text_editor_proxy
         }
         catch( Exception exception )
         {
-            Brief_for_eclipse.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
+            Activator.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
                     "Command <" + command_id + "> not found.", exception ); //$NON-NLS-1$ //$NON-NLS-2$
             return true;
         }
@@ -1144,7 +1152,7 @@ public class Text_editor_proxy
         }
         catch( NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException exception )
         {
-            Brief_for_eclipse.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
+            Activator.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
                     "Could not execute protected methods in StyledText.class", exception ); //$NON-NLS-1$
             return;
         }
@@ -2015,7 +2023,7 @@ public class Text_editor_proxy
         }
         catch( ClassNotFoundException exception )
         {
-            Brief_for_eclipse.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
+            Activator.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
                     "Could not get name for FindReplaceDialog.class", exception ); //$NON-NLS-1$
             return null;
         }
@@ -2174,8 +2182,8 @@ public class Text_editor_proxy
     {
         if( m_find_history.isEmpty() || ( m_find_history.get( 0 ).equals( "" ) ) ) //$NON-NLS-1$
         {
-            Brief_for_eclipse.set_status_line( Messages.text_editor_proxy_42 );
-            Brief_for_eclipse.beep();
+            Activator.set_status_line( Messages.text_editor_proxy_42 );
+            Activator.beep();
             return true;
         }
 
@@ -2189,14 +2197,14 @@ public class Text_editor_proxy
         if( ( index == -1 ) && m_search_dialog_is_wrap_search )
         {
             index = find_and_select_regex( -1 );
-            Brief_for_eclipse.set_status_line( Messages.text_editor_proxy_43 );
-            Brief_for_eclipse.beep();
+            Activator.set_status_line( Messages.text_editor_proxy_43 );
+            Activator.beep();
         }
 
         if( index == -1 )
         {
-            Brief_for_eclipse.set_status_line( Messages.text_editor_proxy_44 );
-            Brief_for_eclipse.beep();
+            Activator.set_status_line( Messages.text_editor_proxy_44 );
+            Activator.beep();
             return true;
         }
 
@@ -2345,8 +2353,8 @@ public class Text_editor_proxy
     {
         if( !is_modifiable( workbench_window, active_editor ) )
         {
-            Brief_for_eclipse.set_status_line( Messages.text_editor_proxy_46 );
-            Brief_for_eclipse.beep();
+            Activator.set_status_line( Messages.text_editor_proxy_46 );
+            Activator.beep();
             return true;
         }
 
@@ -2475,7 +2483,7 @@ public class Text_editor_proxy
             }
             catch( Exception exception )
             {
-                Brief_for_eclipse.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
+                Activator.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": " + //$NON-NLS-1$ //$NON-NLS-2$
                         "Command <" + IWorkbenchCommandConstants.FILE_RENAME + "> not found.", exception ); //$NON-NLS-1$ //$NON-NLS-2$
                 return;
             }

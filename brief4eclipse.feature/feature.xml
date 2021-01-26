@@ -1,60 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="net.ddns.rkdawenterprises.briefforeclipse.feature"
+      id="net.ddns.rkdawenterprises.brief4eclipse.feature"
       label="Brief Text Editor Emulator for Eclipse"
-      version="1.0.0.qualifier"
+      version="1.0.1.qualifier"
       provider-name="RKDAW Enterprises"
-      plugin="net.ddns.rkdawenterprises.briefforeclipse">
+      plugin="net.ddns.rkdawenterprises.brief4eclipse">
 
-   <description url="https://rkdawenterprises.ddns.net/briefforeclipse/about.html">
-      https://rkdawenterprises.ddns.net/briefforeclipse/about.html
+   <description url="https://rkdawenterprises.ddns.net/brief4eclipse/description">
+      Adds key bindings and functionality that attempts to emulate many features of the original BRIEF MS-DOS application. BRIEF (Basic Re-configurable Interactive Editing Facility) was a powerful and popular programmer&apos;s text editor in the late 1980s and early 1990s, developed by UnderWare Inc.
    </description>
 
-   <copyright url="https://rkdawenterprises.ddns.net/briefforeclipse/copyright">
-      Copyright (c) 2020 Ralph and Donna Williamson and RKDAW
-Enterprises
-&lt;rkdawenterprises.ddns.net&gt;. All rights reserved. This program,
-and the accompanying materials, are provided under the terms
-of the Eclipse Public License v2.0 which accompanies this distribution,
-and is available at http://www.eclipse.org/legal/epl-v20.html.
+   <copyright url="https://rkdawenterprises.ddns.net/brief4eclipse/copyright">
+      Copyright © 2021 by RKDAW Enterprises and Ralph Williamson &lt;https://rkdawenterprises.ddns.net, rkdawenterprises@gmail.com&gt;. All rights reserved.
    </copyright>
 
    <license url="https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.html">
-      Copyright (c) 2020 Ralph and Donna Williamson and RKDAW Enterprises
-&lt;rkdawenterprises.ddns.net&gt;. All rights reserved. This program,
-and the accompanying materials, are provided under the terms
-of the Eclipse Public License v2.0 which accompanies this distribution,
-and is available at http://www.eclipse.org/legal/epl-v20.html.
+      Licensed under the Eclipse Public License 2.0.
    </license>
 
    <url>
-      <update label="Brief Text Editor Emulator for Eclipse Update Site" url="https://raw.githubusercontent.com/ralphkw1/briefforeclipse/master/net.ddns.rkdawenterprises.briefforeclipse-updatesite"/>
+      <update label="RKDAW Enterprises Brief4eclipse Plugin" url="https://rkdawenterprises.ddns.net/brief4eclipse"/>
    </url>
 
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.ui.forms"/>
-      <import plugin="org.eclipse.ui.workbench"/>
-      <import plugin="org.eclipse.ui.editors"/>
-      <import plugin="org.eclipse.core.commands"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor"/>
+      <import plugin="org.eclipse.ui.views.properties.tabbed"/>
       <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.core.jobs"/>
-      <import plugin="org.eclipse.equinox.preferences"/>
-      <import plugin="org.eclipse.jface"/>
-      <import plugin="org.eclipse.osgi"/>
-      <import plugin="org.eclipse.swt"/>
+      <import plugin="com.google.guava"/>
       <import plugin="org.eclipse.ui.navigator"/>
       <import plugin="org.eclipse.ui.navigator.resources"/>
-      <import plugin="com.google.guava"/>
    </requires>
 
    <plugin
-         id="net.ddns.rkdawenterprises.briefforeclipse"
+         id="net.ddns.rkdawenterprises.brief4eclipse"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="1.0.1.qualifier"
          unpack="false"/>
 
 </feature>

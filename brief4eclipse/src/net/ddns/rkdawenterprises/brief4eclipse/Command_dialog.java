@@ -1,12 +1,19 @@
 
 /***************************************************************************//**
- * Copyright (c) 2020 Ralph and Donna Williamson and RKDAW Enterprises
- * <rkdawenterprises.ddns.net>. All rights reserved.
+ * Copyright (c) 2021 RKDAW Enterprises and Ralph Williamson,
+ * <rkdawenterprises.ddns.net, rkdawenterprises@gmail.com>. All rights reserved.
  * This program, and the accompanying materials, are provided under the terms
- * of the Eclipse Public License v2.0.
+ * of the Eclipse Public License v2.0 (the "License"). You may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at "https://www.eclipse.org/legal/epl-2.0".
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions, warranties,
+ * and limitations under the License.
  ******************************************************************************/
 
-package net.ddns.rkdawenterprises.briefforeclipse;
+package net.ddns.rkdawenterprises.brief4eclipse;
 
 import org.eclipse.jface.bindings.keys.IKeyLookup;
 import org.eclipse.jface.bindings.keys.KeyLookupFactory;
@@ -228,7 +235,7 @@ public class Command_dialog extends Abstract_text_dialog
     {
         String key = KeyLookupFactory.getDefault().formalNameLookup( key_code );
         boolean key_is_modifier = KeyLookupFactory.getDefault().isModifierKey( key_code );
-        boolean is_printable = Brief_for_eclipse.is_printable( key_code, state_mask );
+        boolean is_printable = Activator.is_printable( key_code, state_mask );
 
         // The state machine can advance itself if need be.
         boolean loop = false;

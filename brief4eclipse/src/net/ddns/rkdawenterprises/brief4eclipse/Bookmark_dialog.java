@@ -1,12 +1,19 @@
 
 /***************************************************************************//**
- * Copyright (c) 2020 Ralph and Donna Williamson and RKDAW Enterprises
- * <rkdawenterprises.ddns.net>. All rights reserved.
+ * Copyright (c) 2021 RKDAW Enterprises and Ralph Williamson,
+ * <rkdawenterprises.ddns.net, rkdawenterprises@gmail.com>. All rights reserved.
  * This program, and the accompanying materials, are provided under the terms
- * of the Eclipse Public License v2.0.
+ * of the Eclipse Public License v2.0 (the "License"). You may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at "https://www.eclipse.org/legal/epl-2.0".
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions, warranties,
+ * and limitations under the License.
  ******************************************************************************/
 
-package net.ddns.rkdawenterprises.briefforeclipse;
+package net.ddns.rkdawenterprises.brief4eclipse;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -18,8 +25,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 
-import net.ddns.rkdawenterprises.briefforeclipse.Abstract_table_dialog.Abstract_table_info;
-import net.ddns.rkdawenterprises.briefforeclipse.Bookmarks_support.Bookmark_info;
+import net.ddns.rkdawenterprises.brief4eclipse.Abstract_table_dialog.Abstract_table_info;
+import net.ddns.rkdawenterprises.brief4eclipse.Bookmarks_support.Bookmark_info;
 
 public class Bookmark_dialog extends Abstract_table_info
 {
@@ -89,7 +96,7 @@ public class Bookmark_dialog extends Abstract_table_info
                 /// TODO: Should do this in pixels for the complete dialog...
                 int modified_max_width =
                         ( ( m_max_width_in_chars - m_titles[2].length() - m_titles[3].length()  ) * 4 ) / 5;
-                String text = Brief_for_eclipse.truncate_elipsis( bookmark.m_resource,
+                String text = Activator.truncate_elipsis( bookmark.m_resource,
                                                                   modified_max_width,
                                                                   true );
                 return text;

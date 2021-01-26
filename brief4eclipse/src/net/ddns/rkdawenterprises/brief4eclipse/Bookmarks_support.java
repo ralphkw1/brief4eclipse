@@ -1,12 +1,19 @@
 
 /***************************************************************************//**
- * Copyright (c) 2020 Ralph and Donna Williamson and RKDAW Enterprises
- * <rkdawenterprises.ddns.net>. All rights reserved.
+ * Copyright (c) 2021 RKDAW Enterprises and Ralph Williamson,
+ * <rkdawenterprises.ddns.net, rkdawenterprises@gmail.com>. All rights reserved.
  * This program, and the accompanying materials, are provided under the terms
- * of the Eclipse Public License v2.0.
+ * of the Eclipse Public License v2.0 (the "License"). You may not use this
+ * file except in compliance with the License. You may obtain a copy of the
+ * License at "https://www.eclipse.org/legal/epl-2.0".
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions, warranties,
+ * and limitations under the License.
  ******************************************************************************/
 
-package net.ddns.rkdawenterprises.briefforeclipse;
+package net.ddns.rkdawenterprises.brief4eclipse;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -100,7 +107,7 @@ public class Bookmarks_support
             }
             catch( MalformedURLException | IllegalArgumentException exception )
             {
-                Brief_for_eclipse.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": ", exception ); //$NON-NLS-1$ //$NON-NLS-2$
+                Activator.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": ", exception ); //$NON-NLS-1$ //$NON-NLS-2$
                 return null;
             }
 
@@ -241,7 +248,7 @@ public class Bookmarks_support
     {
         m_bookmarks = new LinkedList<Bookmark_info>();
 
-        Preferences preferences = InstanceScope.INSTANCE.getNode( Brief_for_eclipse.PLUGIN_ID );
+        Preferences preferences = InstanceScope.INSTANCE.getNode( Activator.PLUGIN_ID );
         if( preferences == null ) return;
 
         Preferences bookmarks = preferences.node( "bookmarks" ); //$NON-NLS-1$
@@ -288,7 +295,7 @@ public class Bookmarks_support
                             ", " + bmi.m_line_column + "]\n" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
 
-        Brief_for_eclipse.system_message( "get_stored_bookmarks:\n" + ( no_bookmarks ? //$NON-NLS-1$
+        Activator.system_message( "get_stored_bookmarks:\n" + ( no_bookmarks ? //$NON-NLS-1$
                 "\tno stored bookmarks" : message.toString() ) ); //$NON-NLS-1$
     }
 
@@ -344,7 +351,7 @@ public class Bookmarks_support
      */
     private void store_bookmarks()
     {
-        Preferences preferences = InstanceScope.INSTANCE.getNode( Brief_for_eclipse.PLUGIN_ID );
+        Preferences preferences = InstanceScope.INSTANCE.getNode( Activator.PLUGIN_ID );
         if( preferences == null ) return;
 
         Preferences bookmarks = preferences.node( "bookmarks" ); //$NON-NLS-1$
@@ -421,11 +428,11 @@ public class Bookmarks_support
     {
         if( m_bookmarks.size() == 0 )
         {
-            Brief_for_eclipse.set_status_line( Messages.bookmarks_support_19 );
+            Activator.set_status_line( Messages.bookmarks_support_19 );
             return;
         }
 
-        Get_a_number_dialog dialog = new Get_a_number_dialog( Brief_for_eclipse.get_shell(),
+        Get_a_number_dialog dialog = new Get_a_number_dialog( Activator.get_shell(),
                                                               m_text_editor_proxy.get_active_editor(),
                                                               MIN_BOOKMARK_NUMBER,
                                                               MIN_BOOKMARK_NUMBER,
@@ -471,7 +478,7 @@ public class Bookmarks_support
                     IEditorPart editor_part = editor_reference.getEditor( true );
                     editor_reference.getPage().activate( editor_part );
 
-                    IEditorPart active_editor = Brief_for_eclipse.get_active_editor( workbench_window );
+                    IEditorPart active_editor = Activator.get_active_editor( workbench_window );
                     m_text_editor_proxy.set_editor( workbench_window, active_editor );
 
                     m_text_editor_proxy.set_model_current_caret_offset( bmi.m_offset );
@@ -479,7 +486,7 @@ public class Bookmarks_support
             }
             catch( Exception exception )
             {
-                Brief_for_eclipse.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": ", exception ); //$NON-NLS-1$ //$NON-NLS-2$
+                Activator.log_error( this.getClass().getName() + "." + new Throwable().getStackTrace()[0].getMethodName() + ": ", exception ); //$NON-NLS-1$ //$NON-NLS-2$
                 continue;
             }
         }
@@ -496,7 +503,7 @@ public class Bookmarks_support
     {
         if( m_bookmarks.size() == 0 )
         {
-            Brief_for_eclipse.set_status_line( Messages.bookmarks_support_22 );
+            Activator.set_status_line( Messages.bookmarks_support_22 );
             return;
         }
 

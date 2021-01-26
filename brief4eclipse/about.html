@@ -45,7 +45,7 @@
         <tr><td>Alt + X</td><td>Exit</td><td>Exits the IDE. Should prompt for unsaved content.</td></tr>
         <tr><td>Alt + W</td><td>Write</td><td>Writes the current editor's file to storage.</td></tr>
         <tr><td>Ctrl + W</td><td>Close window</td><td>Closes the current editor's window.</td></tr>
-        <tr><td>Ctrl + X</td><td>Write all and exit</td><td>Writes all unsaved content to storage and  exits the IDE.</td></tr>
+        <tr><td>Shift + Ctrl + X<sup><a href="#fn16" id="ref1">16</a></sup></td><td>Write all and exit</td><td>Writes all unsaved content to storage and  exits the IDE.</td></tr>
     </table>
     <table>
         <caption>Cursor Movement</caption>
@@ -54,8 +54,8 @@
         <tr><td>End</td><td>End of line or window or file <sup><a href="#fn3" id="ref3">3</a></sup></td><td>Moves the cursor to the end of the line or the window or the file depending on whether it is already there.</td></tr>
         <tr><td>Ctrl + Home</td><td>Top of window</td><td>Moves the cursor to the top fully visible line of the window.</td></tr>
         <tr><td>Ctrl + End</td><td>End of window</td><td>Moves the cursor  to the bottom fully visible line of the window.</td></tr>
-        <tr><td>Ctrl + PgUp</td><td>Top of buffer/file</td><td>Moves the cursor to the first character position of the editor. Hitting the <i>Home</i> key up to 3 times will also do this.</td></tr>
-        <tr><td>Ctrl + PgDn</td><td>End of buffer/file</td><td>Moves the cursor to the last character position of the editor. Hitting the <i>End</i> key up to 3 times will also do this.</td></tr>
+        <tr><td>Ctrl + PgUp</td><td>Top of buffer/file</td><td>Moves the cursor to the first character position of the editor. Hitting the &lt;Home&gt; key up to 3 times will also do this.</td></tr>
+        <tr><td>Ctrl + PgDn</td><td>End of buffer/file</td><td>Moves the cursor to the last character position of the editor. Hitting the &lt;End&gt; key up to 3 times will also do this.</td></tr>
         <tr><td>Shift + Home, Alt + Home</td><td>Left side of window</td><td>Moves the cursor to the left side of the window.</td></tr>
         <tr><td>Shift + End, Alt + End</td><td>Right side of window</td><td>Moves the cursor to the right side of the window.<sup><a href="#fn13" id="ref13">13</a></sup></td></tr>
         <tr><td>Ctrl + &rarr;</td><td>Next word</td><td>Moves the cursor to the last character of the next word.<sup><a href="#fn14" id="ref14">14</a></sup></td></tr>
@@ -120,20 +120,21 @@
 
     <p id="footnotes"  style="margin-left: 2%">
         <sup id="fn1">1) Uses Project Explorer &quot;rename&quot; dialog for the currently active editor. This commits the change to file storage. <a href="#ref1" title="Jump back to footnote 1.">&#x2196;</a></sup><br />
-        <sup id="fn2">2) Pressing <i>Home</i> will move the cursor/caret to the beginning of the current line if it is not already there. If the cursor/caret is already at the beginning of the line, pressing <i>Home</i> will move the cursor/caret to the beginning of the window. If the cursor/caret is already at the beginning of the window, pressing <i>Home</i> will move the cursor/caret to the beginning of the buffer/file. <a href="#ref2" title="Jump back to footnote 2.">&#x2196;</a></sup><br />
-        <sup id="fn3">3) Pressing <i>End</i> will move the cursor/caret to the end of the current line if it is not already there. If the cursor/caret is already at the end of the line, pressing <i>End</i> will move the cursor/caret to the end of the window. If the cursor/caret is already at the end of the window, pressing <i>End</i> will move the cursor/caret to the end of the buffer/file. <a href="#ref3" title="Jump back to footnote 3.">&#x2196;</a></sup><br />
-        <sup id="fn4">4) New command. This mode facilitates column selection that starts in virtual  character space. First place the cursor beyond the end of an existing line by positioning the mouse at the desired location and depressing <i>Alt + V</i>. Reposition with mouse clicks then column mode with <i>Alt + C</i>.  Any keystroke will exit from virtual caret mode.<a href="#ref4" title="Jump back to footnote 4.">&#x2196;</a></sup><br />
+        <sup id="fn2">2) Pressing &lt;Home&gt; will move the cursor/caret to the beginning of the current line if it is not already there. If the cursor/caret is already at the beginning of the line, pressing &lt;Home&gt; will move the cursor/caret to the beginning of the window. If the cursor/caret is already at the beginning of the window, pressing &lt;Home&gt; will move the cursor/caret to the beginning of the buffer/file. <a href="#ref2" title="Jump back to footnote 2.">&#x2196;</a></sup><br />
+        <sup id="fn3">3) Pressing &lt;End&gt; will move the cursor/caret to the end of the current line if it is not already there. If the cursor/caret is already at the end of the line, pressing &lt;End&gt; will move the cursor/caret to the end of the window. If the cursor/caret is already at the end of the window, pressing &lt;End&gt; will move the cursor/caret to the end of the buffer/file. <a href="#ref3" title="Jump back to footnote 3.">&#x2196;</a></sup><br />
+        <sup id="fn4">4) New command. This mode facilitates column selection or pasting that is beyond the end of a line (virtual character space). Place the cursor beyond the end of an existing line by positioning the mouse at the desired location and depressing &lt;Alt + V&gt;. You can reposition with mouse clicks. Switch to column mode with &lt;Alt + C&gt; and move cursor to change selection. Can also paste into the virtual space.  Any keystroke before entering column mode will exit from virtual caret mode.<a href="#ref4" title="Jump back to footnote 4.">&#x2196;</a></sup><br />
         <sup id="fn5">5) Bookmark 10 is dropped using the 0 key. <a href="#ref5" title="Jump back to footnote 5.">&#x2196;</a></sup><br />
-        <sup id="fn6">6) According to the documentation, pressing the <i>Tab</i> key in the Jump Bookmark dialog will bring up a menu of bookmarks. This is difficult to do in normal dialogs since <i>Tab</i> moves focus. So <i>Shift + B</i> will bring up the bookmarks menu. <a href="#ref6" title="Jump back to footnote 6.">&#x2196;</a></sup><br />
+        <sup id="fn6">6) According to the documentation, pressing the &lt;Tab&gt; key in the Jump Bookmark dialog will bring up a menu of bookmarks. This is difficult to do in normal dialogs since &lt;Tab&gt; moves focus. So &lt;Alt + B&gt; will bring up the bookmarks dialog/menu. <a href="#ref6" title="Jump back to footnote 6.">&#x2196;</a></sup><br />
         <sup id="fn7">7) AKA the clipboard. <a href="#ref7" title="Jump back to footnote 7.">&#x2196;</a></sup><br />
         <sup id="fn8">8) Utilizes the standard <i>Find/Replace</i> dialog which does not directly map to Brief commands. This mostly accomodates the Brief command set without recreating the whole search and replace functionality.<a href="#ref8" title="Jump back to footnote 8.">&#x2196;</a></sup><br />
         <sup id="fn9">9) To set the search and translate parameters, first open the <i>Find/Replace</i> dialog, fill in the fields, and then either click an action or just close the dialog. The parameters will be saved.<a href="#ref9" title="Jump back to footnote 9.">&#x2196;</a></sup><br />
-        <sup id="fn10">10) New command. Comes in handy when you want to change some existing code to a new variable. First create the new variable then copy it. Then select the code and swap. Then paste the code to the new variable. <a href="#ref10" title="Jump back to footnote 10.">&#x2196;</a></sup><br />
+        <sup id="fn10">10) New command. Comes in handy when you want to extract some existing code from a complex statement and make it a new variable. First create the new variable then copy it. Then select the code statement and swap &lt;Alt+Ins&gt;. Then paste the code after the new variable. <a href="#ref10" title="Jump back to footnote 10.">&#x2196;</a></sup><br />
         <sup id="fn11">11) Not all commands are supported or work well. Actually accepts any &quot;non-printable&quot; key sequence, so not sure what works actually.<a href="#ref11" title="Jump back to footnote 11.">&#x2196;</a></sup><br />
         <sup id="fn12">12) Key binding taken from <i>Buffer List</i> command, which is not supported.<a href="#ref12" title="Jump back to footnote 12.">&#x2196;</a></sup><br />
         <sup id="fn13">13) Moves to far right side of window regardless of whether or not there is text there. May activate "Virtual Caret Mode" if in virtual space, i.e. no text.<a href="#ref13" title="Jump back to footnote 13.">&#x2196;</a></sup><br />
-        <sup id="fn14">14) This is a deviation from documented functionality. I used the eclipse function instead of reworking it.<br />
-        <sup id="fn15">15) This is a new command. I've always wanted to have a multi-item clipboard. <a href="#ref15" title="Jump back to footnote 15.">&#x2196;</a><br />
+        <sup id="fn14">14) This is a deviation from documented functionality. I used the eclipse function instead of reworking it. <a href="#ref14" title="Jump back to footnote 14.">&#x2196;</a></sup><br />
+        <sup id="fn15">15) This is a new command. I've always wanted to have a multi-item clipboard. <a href="#ref15" title="Jump back to footnote 15.">&#x2196;</a></sup><br />
+        <sup id="fn16">16) This should be just &lt;CTL+X&gt;, but eclipse complains about trying to bind that key-sequence so I modified it a little. <a href="#ref16" title="Jump back to footnote 16.">&#x2196;</a></sup><br />
     </p>
 
     <h3>Contact</h3>
